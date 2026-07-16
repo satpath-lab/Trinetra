@@ -21,11 +21,27 @@ and the audit log that records every decision, are both protected with
 real hybrid post-quantum cryptography (ML-KEM-768 + X25519, ML-DSA-65) -
 not a claimed buzzword.
 
-![Homepage](screenshots/screencapture-localhost-1.png)
-![Homepage](screenshots/screencapture-localhost-2.png)
-![Homepage](screenshots/screencapture-localhost-3.png)
-![Homepage](screenshots/screencapture-localhost-4.png)
-![Homepage](screenshots/screencapture-localhost-5.png)
+<p align="center">
+  <a href="screenshots/screencapture-localhost-1.png">
+    <img src="screenshots/screencapture-localhost-1.png" width="250">
+  </a>
+
+  <a href="screenshots/screencapture-localhost-2.png">
+    <img src="screenshots/screencapture-localhost-2.png" width="250">
+  </a>
+
+  <a href="screenshots/screencapture-localhost-3.png">
+    <img src="screenshots/screencapture-localhost-3.png" width="250">
+  </a>
+
+  <a href="screenshots/screencapture-localhost-4.png">
+    <img src="screenshots/screencapture-localhost-4.png" width="250">
+  </a>
+
+  <a href="screenshots/screencapture-localhost-5.png">
+    <img src="screenshots/screencapture-localhost-5.png" width="250">
+  </a>
+</p>
 
 ## Quickstart
 
