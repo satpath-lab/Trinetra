@@ -7,6 +7,10 @@ Built for **FinSpark'26** (Bank of Maharashtra / IBA / Department of
 Financial Services), Problem Statement 1: *Privileged Access Misuse &
 Insider Threat Detection*.
 
+**Live:** https://trinetra-dnii.onrender.com (free-tier server, can be slow
+to cold-start - running it locally via the Quickstart below is faster and
+recommended for actually evaluating it)
+
 ## What it does
 
 Every privileged session (a DBA touching the core banking database, a
