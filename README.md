@@ -192,8 +192,6 @@ not implemented here.
   signed and hash-chained (`trinetra/audit/log.py`). Editing a field breaks
   that entry's signature; deleting an entry breaks the hash-chain link to
   the next one. Both are independently demoed in `run_vault_demo.py`.
-- **Maker-checker** - a quarantined user can never approve their own
-  reinstatement; resuming requires a distinct, named second approver
-  (`AccessControlPolicy.resume_from_quarantine`).
+- **Maker-checker** - a quarantined user can never approve their own reinstatement; resuming requires a distinct, named second approver (`AccessControlPolicy.resume_from_quarantine`). Prototype scope, stated plainly: the approver is a typed name, checked only against "is this different from the quarantined user" — there is no integration with a real identity provider to verify the approver is who they claim to be, or that they hold an authorized role. A production deployment would require the approver to authenticate through the bank's existing SSO/IAM (the same one already used for their normal login) and would check that authenticated identity against an authorized-approver list (security team, or the user's actual manager, pulled from the bank's existing HR/AD hierarchy) before accepting the approval - the same pattern real PAM products (CyberArk, BeyondTrust) follow: integrate with existing identity infrastructure rather than build a separate one. Step-up authentication has the identical scope limitation - `simulate_stepup_auth` is a deterministic stand-in for an MFA challenge, not a real one, for the same reason.
 - This is a hackathon prototype evaluated on synthetic proxy data, not
   production bank data - stated here explicitly rather than implied.
