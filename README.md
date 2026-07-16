@@ -71,6 +71,39 @@ stating precisely rather than implying more than that.
 Full breakdown, per-scenario trajectories, and every other verified number
 used in the pitch deck: [`trinetra_verified_numbers.md`](trinetra_verified_numbers.md).
 
+## Baselining period, in production
+
+Like any behavioral anomaly detector - this includes commercial UEBA
+products such as Microsoft Defender for Identity, Exabeam, and Securonix,
+which all work the same way - Trinetra needs an initial period of
+activity to learn what "normal" looks like, per person and per role,
+before it can meaningfully flag deviations from it. In this prototype,
+that's the first 50 of 90 simulated days.
+
+In a real deployment, this does **not** mean someone manually writes or
+hand-curates a "clean" dataset. It means pointing the system at a recent
+window of the bank's actual historical logs, as-is (roughly 2-4 weeks is
+standard for this category of tool), and letting it build baselines
+directly from that. This works without manual cleaning because insider
+attacks are rare relative to total activity, so raw, unfiltered historical
+logs are overwhelmingly normal by default - and both algorithms used here
+(Isolation Forest, peer-group deviation) define "normal" as the majority
+pattern, not a hand-verified ground truth, so they're inherently tolerant
+of a small amount of contamination in that window rather than depending on
+it being perfectly clean.
+
+The honest limitation: if that baseline window happens to contain a
+sustained, ongoing insider campaign, the model's sensitivity to that
+specific pattern is somewhat reduced, since it partially gets absorbed
+into what looks "normal" for that person or role. This is a known, general
+limitation of unsupervised behavioral detection, not unique to this
+system. The standard mitigations, used the same way in real UEBA
+deployments, are: start a new deployment in observation-only mode before
+enabling automated quarantine actions, refresh the baseline on a rolling
+basis rather than once, and layer rule-based detections alongside the
+behavioral model for known-bad patterns that don't need a baseline to
+catch at all.
+
 ## Why the data is synthetic
 
 The real CMU CERT Insider Threat dataset (r4.2) is a 4.82GB archive. Instead,
